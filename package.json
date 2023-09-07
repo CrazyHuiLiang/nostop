@@ -1,0 +1,17 @@
+{
+  "name": "nostop",
+  "version": "1.0.4",
+  "description": "一些自定义的工作流",
+  "main": "index.js",
+  "bin": {
+    "nonstop": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git merge"
+  ],
+  "author": "",
+  "license": "ISC"
+}
