@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const child_process = require('node:child_process');
-
 const action = String(process.argv[2]).toLowerCase();
 
 switch(action) {
@@ -11,7 +10,7 @@ switch(action) {
 			console.log("缺少目标分支名");
 			process.exit(1);
 		}
-		const ls = child_process.exec('sh -xe ./m2.sh ' + branch);
+		const ls = child_process.exec(`sh -xe ${__dirname}/m2.sh ${branch}`);
 
 		ls.stdout.on('data', (data) => {
 			console.log(data.toString());
@@ -27,6 +26,9 @@ switch(action) {
 
 		// child_process.exec(`./m2.sh ${branch}`);
 		// console.log(branch);
+	} break;
+	default: {
+		console.error('command not found.');
 	} break;
 }
 
