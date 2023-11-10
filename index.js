@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const child_process = require('node:child_process');
+const serve = require('./serve/index');
 const action = String(process.argv[2]).toLowerCase();
 
 switch(action) {
@@ -26,6 +27,10 @@ switch(action) {
 
 		// child_process.exec(`./m2.sh ${branch}`);
 		// console.log(branch);
+	} break;
+	case 'serve': {
+		const port = process.argv[3];
+		serve.start_serve(port);
 	} break;
 	default: {
 		console.error('command not found.');

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文件服务</title>
+    <style>
+        .upload {
+            margin: 12px;
+            background: #1111FF;
+            height: 40px;
+            line-height: 40px;
+            color: white;
+            text-align: center;
+            margin: 12px;
+            border-radius: 8px;
+        }
+        .file-list {
+            margin: 12px;
+        }
+        .file-row {
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload">上传文件</div>
+    <form hidden>
+        <input name="path" value="/upload_dir">
+        <input name="file" type="file" multiple hidden>
+    </form>
+    <video></video>
+    <div class="file-list">
+        <div class="file-row">.</div>
+        <div class="file-row">..</div>
+        <div class="file-row">
+            file1
+        </div>
+        <div class="file-row">file2</div>
+    </div>
+    <script>
+        const up_bt = document.querySelector('.upload');
+        const up_input = document.querySelector('[name="file"]');
+
+        up_bt.addEventListener('click', function() {
+            up_input.value = null;
+            up_input.click();
+        });
+        up_input.addEventListener('input', function (e) {
+            const body = new FormData(document.querySelector('form'));
+            console.log(body, up_input.files);
+            fetch('_s_upload', {
+                method: "POST",
+                body,
+            });
+        });
+    </script>
+</body>
+</html>
