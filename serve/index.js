@@ -5,24 +5,7 @@ const os = require('node:os');
 const fs = require('node:fs');
 const qrcode = require('qrcode-terminal');
 const working_dir = process.cwd();
-
-// 获取 pattern_buf 在 buf 中出现的位置
-function indexesOf(buf, pattern_buf) {
-    const indexes = [];
-    let j=0;
-    for (let i = 0; i<buf.length; i++) {
-        for (j=0; j<pattern_buf.length; j++) {
-            const c1 = buf[i+j];
-            const c2 = pattern_buf[j];
-            log(c1, c2);
-            if (c1 !== c2) {
-                break;
-            }
-        }
-        j + 1 === pattern_buf.length && indexes.push(i);
-    }
-    return indexes;
-}
+const body_parser = require('./body_parser');
 
 // 浏览文件系统
 function explore(req, res) {
@@ -49,31 +32,11 @@ function explore(req, res) {
     res.end('Unknown file type.');
 }
 
-// const buffer = 
-// function get_part(data, delimiter, message_cb) {
-// }
-
-
 // 文件上传
-function controller_upload(req, res) {
-    let buffers = [];
-    req.on('data', buffers.push.bind(buffers));
-    req.on('end', () => {
-        const r = req;
-        const boundary = req.headers['content-type'].split('multipart/form-data; boundary=').pop();
-        const boundary_b = Buffer.from(boundary, 'utf-8');
-        const new_l_b = Buffer.from('\n', 'utf-8');
-        const hyphens = Buffer.from('--', 'utf-8');
-        
-        const body = Buffer.concat(buffers);
-        const sss = body.toString();
-        log(sss);
-
-
-        const indexes = indexesOf(body, boundary_b);
-        log(indexes);
-        res.end('{}'); 
-    });
+async function controller_upload(req, res) {
+    const body_parsed = await body_parser.simpleParser(req);
+    // let path = ''
+    log(body_parsed);
 }
 // 文件下载
 function controller_download(req, res) {
