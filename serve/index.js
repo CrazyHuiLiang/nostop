@@ -1,7 +1,7 @@
 const { log } = require('node:console');
 const http = require('node:http');
 const os = require('node:os');
-// const path = require('node:path');
+const path = require('node:path');
 const fs = require('node:fs');
 const qrcode = require('qrcode-terminal');
 const working_dir = process.cwd();
@@ -35,8 +35,19 @@ function explore(req, res) {
 // 文件上传
 async function controller_upload(req, res) {
     const body_parsed = await body_parser.simpleParser(req);
-    // let path = ''
-    log(body_parsed);
+    let up_path = __dirname;
+    body_parsed.forEach(item => {
+        if (item.header_parsed.name === 'path') {
+            up_path += item.body.toString();
+        }
+    });
+    body_parsed.forEach(part => {
+        if (part.header_parsed.name === 'file') {
+            const file_path = path.resolve(up_path, part.header_parsed.filename);
+            fs.writeFileSync(file_path, part.body);
+        }
+    });
+    log(up_path, body_parsed);
 }
 // 文件下载
 function controller_download(req, res) {

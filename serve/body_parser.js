@@ -46,7 +46,7 @@ function simpleMutipartParser(body, boundary) {
         }else if (Number.isInteger(delimiter_index)) {
             const headers_b = part.subarray(0, delimiter_index).toString().split(new_l_b.toString());
             headers = headers_b;
-            body = part.subarray(delimiter_index);
+            body = part.subarray(delimiter_index + header_delimiter.length);
         } else {
             throw new Error('body part parse error.');
         }
