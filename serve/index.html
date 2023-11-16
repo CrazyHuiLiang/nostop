@@ -2,16 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>文件服务</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAdAAAAHgAAAB4AAAAeAAAAHgAAAB4AAAAeAAAAHgAAAB4AAAAeAAAAHgAAAB0AAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAANgAAADiAAAA4wAAAOMAAADjAAAA4wAAAOMAAADjAAAA4wAAAOMAAADiAAAA2AAAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA9wAAAPkAAADkAAAA4AAAAN8AAADiAAAA4wAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////////////+AAf//gAH//4AB//yAAT/wAOAP4ADgB8AAAAPAgAEDg4ABwYeA4eGHgOHhh4AB4YOAAcHAgAEDwAAAA+A//AfwP/wP/B/4P/4P8H/+A8B//wAA//+AAf//wAP///gf//////////////////////8=" rel="icon" type="image/x-icon">
+    <title>文件服务/__ip__</title>
     <style>
+        body {
+            background: #eee;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
         .upload {
-            margin: 12px;
+            margin: 18px 12px;
             background: #1111FF;
             height: 40px;
             line-height: 40px;
             color: white;
             text-align: center;
-            margin: 12px;
             border-radius: 8px;
         }
         .file-list {
@@ -21,40 +28,136 @@
             cursor: pointer;
             height: 40px;
             line-height: 40px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-row span {
+            flex: 1;
+            text-align: left;
+            text-indent: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .dir {
+            border-bottom: 1px solid #ddd;
+        }
+        .icon-file-type,.icon-arrow-right {
+            width: 30px;
+            height: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="upload">上传文件</div>
+    <div style="background: white; overflow: hidden; margin-top: 1px;">
+        <div class="upload">上传文件</div>
+    </div>
     <form hidden>
-        <input name="path" value="/upload_dir">
+        <input name="entry" value="/">
         <input name="file" type="file" multiple hidden>
     </form>
-    <video></video>
-    <div class="file-list">
-        <div class="file-row">.</div>
-        <div class="file-row">..</div>
-        <div class="file-row">
-            file1
-        </div>
-        <div class="file-row">file2</div>
-    </div>
+    <div class="file-list"></div>
     <script>
+        // 请求工具
+        async function request(url, opt) {
+            const res = await fetch(url,{
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                ...opt,
+                credentials: 'include',
+            });
+            const res_obj = await res.json();
+            if (res_obj.success === false) {
+                throw new Error(res_obj.info || '网络出错了~');
+            }
+            return res_obj.data;
+        }
+        // 列取文件
+        async function api_s_explore(entry) {
+            return request(`/_s_explore?entry=${encodeURIComponent(entry)}`, {
+                method: "get",
+            });
+        }
+        // 上传文件
+        async function api_s_upload(form) {
+            return fetch('_s_upload', {
+                method: "POST",
+                body: form,
+            });
+        }
+
         const up_bt = document.querySelector('.upload');
         const up_input = document.querySelector('[name="file"]');
+        const file_list = document.querySelector('.file-list');
+        const up_entry = document.querySelector('[name="entry"]');
+        const default_state = {entry: '/'};
+        let current_state = default_state;
 
+        // 点击上传按钮
         up_bt.addEventListener('click', function() {
             up_input.value = null;
             up_input.click();
         });
-        up_input.addEventListener('input', function (e) {
+        // 选择文件
+        up_input.addEventListener('input', async function (e) {
             const body = new FormData(document.querySelector('form'));
             console.log(body, up_input.files);
-            fetch('_s_upload', {
-                method: "POST",
-                body,
-            });
+            await api_s_upload(body);
+            load(history.state);
         });
+
+        async function onEntryClick(isDir, name) {
+            let entry = current_state.entry + name;
+            if (isDir) {
+                if (name === '..') {
+                    history.back();
+                    return;
+                }
+                entry += '/';
+                const new_state = Object.assign({}, current_state, {
+                    entry,
+                });
+                history.pushState(new_state, 'entry', '#' + entry);
+                load(new_state);
+                return;
+            }
+            window.open(`/_s_explore/${name}?entry=${entry}`);
+        }
+
+        // 加载页面数据
+        async function load(state) {
+            state = current_state = state || default_state;
+            up_entry.value = state.entry;
+            console.log('state', state);
+
+            const dir_entrys = await api_s_explore(state.entry);
+            console.log('entrys', dir_entrys);
+
+            file_list.innerHTML = dir_entrys.map(entry => `
+                <div class="file-row ${entry.isDir?"dir": "file"}" onclick="onEntryClick(${entry.isDir}, '${entry.name}')">
+                    ${entry.isDir
+                        ? `<svg class="icon-file-type" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6017" width="300" height="300"><path d="M853.333333 256H469.333333l-85.333333-85.333333H170.666667c-46.933333 0-85.333333 38.4-85.333334 85.333333v170.666667h853.333334v-85.333334c0-46.933333-38.4-85.333333-85.333334-85.333333z" fill="#FFA000" p-id="6018"></path><path d="M853.333333 256H170.666667c-46.933333 0-85.333333 38.4-85.333334 85.333333v426.666667c0 46.933333 38.4 85.333333 85.333334 85.333333h682.666666c46.933333 0 85.333333-38.4 85.333334-85.333333V341.333333c0-46.933333-38.4-85.333333-85.333334-85.333333z" fill="#FFCA28" p-id="6019"></path></svg>`
+                        : `<svg class="icon-file-type" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5006" width="300" height="300"><path d="M854.6 288.7c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z" fill="#1296DB" p-id="5007"></path></svg>`
+                    }
+                    <span>${entry.name}</span>
+                    ${entry.isDir ? 
+                        `<svg class="icon-arrow-right" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3999" width="300" height="300">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z" fill="#CCCCCC" p-id="4000"></path>
+                        </svg>`: ''
+                    }
+                </div>`)
+                .join('');
+        }
+        window.addEventListener('popstate', e => load(e.state));
+        load(history.state);
+    </script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+        var vConsole = new window.VConsole();
     </script>
 </body>
 </html>
