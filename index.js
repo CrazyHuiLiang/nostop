@@ -11,7 +11,7 @@ switch(action) {
 			console.log("缺少目标分支名");
 			process.exit(1);
 		}
-		const ls = child_process.exec(`sh -xe ${__dirname}/m2.sh ${branch}`);
+		const ls = child_process.exec(`sh -xe ${__dirname}/m2/m2.sh ${branch}`);
 
 		ls.stdout.on('data', (data) => {
 			console.log(data.toString());
