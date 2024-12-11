@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const child_process = require('node:child_process');
+const child_process = require('child_process');
 const serve = require('./serve/index');
 const action = String(process.argv[2]).toLowerCase();
 

@@ -1,8 +1,8 @@
-const { log } = require('node:console');
-const http = require('node:http');
-const os = require('node:os');
-const path = require('node:path');
-const fs = require('node:fs');
+const { log } = require('console');
+const http = require('http');
+const os = require('os');
+const path = require('path');
+const fs = require('fs');
 const qrcode = require('qrcode-terminal');
 const working_dir = process.cwd();
 const body_parser = require('./body_parser');
@@ -82,6 +82,13 @@ function controller_download(req, res) {
     res.end(`{"success": false, "info": "not support."}`);
 }
 
+if (!Array.prototype.flat) {
+    Array.prototype.flat = function () {
+        const arr = [];
+        this.forEach(item => arr.push(...item));
+        return arr;
+    }
+}
 exports.start_serve = function (port = 3000) {
 
     const inter = os.networkInterfaces();
