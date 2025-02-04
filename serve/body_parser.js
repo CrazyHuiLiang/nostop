@@ -1,3 +1,8 @@
+const EventEmitter = require('events');
+const stream = require('stream');
+
+// 换行符
+const new_l_b = Buffer.from('\r\n', 'utf-8');
 
 // 获取 pattern_buf 在 buf 中出现的位置
 function *indexesOf(buf, pattern_buf) {
@@ -18,12 +23,13 @@ function *indexesOf(buf, pattern_buf) {
 
 function simpleMutipartParser(body, boundary) {
     const boundary_b = Buffer.from(boundary, 'utf-8');
-    const new_l_b = Buffer.from('\r\n', 'utf-8');
     const hyphens_b = Buffer.from('--', 'utf-8');
     const delimiter = Buffer.concat([hyphens_b, boundary_b]);
-    
+
     const indexes = [...indexesOf(body, delimiter)];
-    // log(indexes);
+    console.log('indexes', {
+        delimiter: delimiter.toString('utf8'), body: body.toString('utf8'), indexes
+    });
 
     const body_parts = [];
     for (let i=0; i<indexes.length-1; i++) {
@@ -34,6 +40,7 @@ function simpleMutipartParser(body, boundary) {
         // log('-------\n', part_s);
         body_parts.push(part);
     }
+    console.log('body_parts', body_parts)
 
     const body_parsed = body_parts.map(part => {
         const header_delimiter = Buffer.concat([new_l_b, new_l_b]);
@@ -92,4 +99,67 @@ function simpleParser(req, cb) {
 
 exports.simpleMutipartParser = simpleMutipartParser;
 exports.simpleParser = simpleParser;
+
+
+
+class MutipartParser extends EventEmitter {
+    constructor(headers) {
+        super();
+        const boundary = headers['content-type'].split('boundary=').pop();
+        const hyphens_b = Buffer.from('--', 'utf-8');
+        const boundary_b = Buffer.from(boundary, 'utf-8');
+        this.delimiter = Buffer.concat([hyphens_b, boundary_b, new_l_b]);
+        this.buffers = [];
+        this.buffedStream = null;
+    }
+    parse(req) {
+        req.on('data', data => {
+            this.buffers.push(data);
+            this.doParseParts();
+        });
+        req.on('end', () => {
+            this.doFinish();
+            this.emit('end');
+        });
+    }
+
+    createNewStream() {
+        // 如果存在正在写的流对象，将流对象结束掉
+        if (this.buffedStream) {
+            this.buffedStream.end();
+        }
+        // 新建一个流对象
+        this.buffedStream = new stream.Duplex();
+    }
+    write(buffer) {
+        this.buffedStream.write(buffer);
+    }
+
+    doParseParts() {
+        const body = Buffer.concat(this.buffers);
+        const indexes = [...indexesOf(body, this.delimiter)];
+        let consumeBuffers = [];
+        // 当前暂存的数据中没有出现分界符(肯定不是第一个块)
+        if (!indexes.length) {
+            // 如果 buffer 的个数多于1个的话
+            if (this.buffers.length > 1) {
+                // 这时除了最后一个 buffer有可能包含分界符号，其他 buffer 都可以确定时属于前一个 part 的数据
+                consumeBuffers = this.buffers.splice(0, this.buffers.length-1);
+                consumeBuffers.forEach(buff => this.write(buff));
+                return;
+            }
+            // 如果 buffer 的数量小于等于 1 时，防止块中只包含一半分界符，暂缓分解符的解析
+        }
+        // 分解符出现在开始位置
+        if (indexes[0] === 0) {
+            this.createNewStream();
+        }
+
+    }
+    doFinish() {
+
+    }
+}
+
+exports.MutipartParser = MutipartParser;
 
