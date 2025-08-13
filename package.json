@@ -1,6 +1,6 @@
 {
   "name": "nostop",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "一些自定义的工作流",
   "main": "index.js",
   "engines": {
@@ -10,7 +10,7 @@
     "nostop": "index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "serve",
@@ -21,6 +21,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fast-glob": "^3.3.3",
+    "marked": "^9.1.6",
+    "marked-terminal": "^7.3.0",
+    "pngquant": "^4.2.0",
     "qrcode-terminal": "^0.12.0"
   }
 }

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 const child_process = require('child_process');
 const serve = require('./serve/index');
+const fs = require('fs');
+const tinypng = require('./pngquant/tinypng');
 const action = String(process.argv[2]).toLowerCase();
 
 switch(action) {
@@ -28,14 +30,30 @@ switch(action) {
 		// child_process.exec(`./m2.sh ${branch}`);
 		// console.log(branch);
 	} break;
+    case 'tinypng': {
+		const glob = process.argv[3];
+		if (!glob) {
+			console.log("缺少文件名/通配符");
+			process.exit(1);
+		}
+        tinypng(glob);
+    } break;
 	case 'serve': {
 		const port = process.argv[3];
 		serve.start_serve(port);
 	} break;
 	default: {
-		console.error('command not found.');
+        const marked = require('marked');
+        const TerminalRenderer = require('marked-terminal');
+        // console.log('TerminalRenderer', marked);
+        marked.setOptions({
+            // Define custom renderer
+            renderer: new TerminalRenderer.default()
+        });
+
+        // Show the parsed data
+        console.log(
+            marked.marked(fs.readFileSync('./help', 'utf-8'))
+        );
 	} break;
 }
-
-
-
