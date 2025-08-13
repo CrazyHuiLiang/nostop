@@ -4,6 +4,7 @@ const serve = require('./serve/index');
 const fs = require('fs');
 const tinypng = require('./pngquant/tinypng');
 const action = String(process.argv[2]).toLowerCase();
+const version = require('./package.json').version;
 
 switch(action) {
 	case 'm2':
@@ -45,6 +46,8 @@ switch(action) {
 	default: {
         const marked = require('marked');
         const TerminalRenderer = require('marked-terminal');
+        console.log('nostop@' + version);
+        console.log('commit issue: https://github.com/CrazyHuiLiang/nostop/issues');
         // console.log('TerminalRenderer', marked);
         marked.setOptions({
             // Define custom renderer
@@ -53,7 +56,7 @@ switch(action) {
 
         // Show the parsed data
         console.log(
-            marked.marked(fs.readFileSync('./help', 'utf-8'))
+            marked.marked(fs.readFileSync(__dirname + '/help', 'utf-8'))
         );
 	} break;
 }

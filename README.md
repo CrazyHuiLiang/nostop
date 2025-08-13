@@ -47,3 +47,12 @@ git checkout feature-branch
 ```
 
 如果你也是经常这么做，那么可以通过 `nostop m2 <target-branch>` 一条命令来取代上面在`分界线`之后的多条命令了。
+
+### 压缩png图片
+
+```sh
+# 压缩 a.png，输出至 a-compressed.png
+nostop tinypng a.png
+# 支持通配符
+nostop tinypng "*.png"
+```
